@@ -1,0 +1,1869 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Flashcards - Programming</title>
+    <style>
+        body {
+            background-color: #2c3e50;
+            color: #131314;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 20px;
+            overflow: auto;
+        }
+
+
+        .sidebar {
+            background-color: #34495e;
+            width: 250px;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .sidebar button {
+            background-color: #e3ed4b;
+            color: rgb(22, 19, 19);
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+            /* Make all buttons the same width as the sidebar */
+            box-sizing: border-box;
+            /* Ensure padding is included in the total width */
+            text-align: left;
+            /* Align the content to the left */
+        }
+
+        .sidebar button:hover {
+            background-color: #50f43a;
+        }
+
+        .container {
+            flex: 1;
+            padding: 20px;
+            display: none;
+            /* Hide by default */
+        }
+
+        .container.active {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .flashcard {
+            background-color: #dbe9a9;
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .flashcard:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(19, 240, 30, 0.4);
+        }
+
+        .question {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .answer {
+            display: none;
+            font-size: 1em;
+            margin-top: 10px;
+            color: #090a0a;
+        }
+
+        /* Add the clicked class here */
+        .clicked {
+            background-color: #94fba4;
+            /* Example color: red */
+            color: #181616d0;
+            /* Example text color: white */
+        }
+
+        .flashcard:active .answer {
+            display: block;
+        }
+    </style>
+    <script>
+        function showGroup(groupId) {
+            var containers = document.querySelectorAll('.container');
+            containers.forEach(container => container.classList.remove('active'));
+            document.getElementById(groupId).classList.add('active');
+        }
+
+        function toggleAnswer(flashcard) {
+            const answer = flashcard.querySelector('.answer');
+            answer.style.display = (answer.style.display === 'block') ? 'none' : 'block';
+
+            // Toggle the 'clicked' class to change the color
+            flashcard.classList.toggle('clicked');
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="sidebar">
+        <button onclick="showGroup('group1')">Programming Concepts (143)</button>
+        <button onclick="showGroup('group2')">Historical Figures (20)</button>
+        <button onclick="showGroup('group3')">Hardware (25)</button>
+        <button onclick="showGroup('group4')">Software (22)</button>
+        <button onclick="showGroup('group5')">Data Representation (6)</button>
+    </div>
+
+    <!-- Programming Concepts -->
+    <div id="group1" class="container">
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a module in Python?</div>
+            <div class="answer">A module is a file containing Python code, including functions and classes, that can be
+                imported and used in other Python programs.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What are the two common ways to import a module in Python, and how do they differ in
+                usage?</div>
+            <div class="answer">1. <code>import math</code>: You import the entire module and use
+                <code>math.sqrt()</code> to access the functions.<br>2. <code>from math import sqrt</code>: You import a
+                specific function and can use <code>sqrt()</code> directly without the module prefix.
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a loop in programming?</div>
+            <div class="answer">A loop is a control structure that repeatedly executes a block of code as long as a
+                specified condition is true. Common loops include <code>for</code> and <code>while</code> loops.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the difference between integers and floats?</div>
+            <div class="answer">Integers are whole numbers (e.g., 1, -5, 100), while floats are numbers with a decimal
+                point (e.g., 1.5, -3.14, 0.0).</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a string?</div>
+            <div class="answer">A string is a sequence of characters enclosed in single, double, or triple quotes.
+                Example: <code>'hello'</code> or <code>"hello"</code>.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you convert a string to an integer or float?</div>
+            <div class="answer">You can use the <code>int()</code> function to convert a string to an integer and
+                <code>float()</code> to convert to a float. Example: <code>int('123')</code> or
+                <code>float('3.14')</code>.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a list in Python?</div>
+            <div class="answer">A list in Python is a collection of items that are ordered and mutable. Lists can
+                contain elements of different data types, including other lists.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a set in Python?</div>
+            <div class="answer">A set is an unordered collection of unique elements. It is defined using curly braces,
+                like <code>{1, 2, 3}</code>, or the <code>set()</code> function.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a subprogram in Python?</div>
+            <div class="answer">A subprogram in Python is a block of code defined as a function, which performs a
+                specific task and can be called multiple times.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the difference between local and global scope?</div>
+            <div class="answer">Local scope refers to variables defined within a function, accessible only inside that
+                function. Global scope refers to variables defined outside any function, accessible throughout the
+                script.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Why can a variable with the same name behave differently in different functions (defs)
+                without causing an error?</div>
+            <div class="answer">Variables defined inside a function have a local scope, meaning they are accessible only
+                within that function. This allows variables with the same name in different functions to coexist without
+                conflict, as they are separate entities within their respective scopes.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What does it mean to "call a function" in programming?</div>
+            <div class="answer">To "call a function" means to execute or invoke the code within the function. This is
+                done by using the function's name followed by parentheses, optionally passing arguments inside the
+                parentheses if the function requires them. For example, <code>myFunction()</code> calls a function named
+                <code>myFunction</code>.
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the difference between functions and procedures in general programming terms?
+            </div>
+            <div class="answer">In general programming, functions are sub-algorithms that return a value, while
+                procedures are sub-algorithms that do not return any value.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How are functions and procedures handled in Python?</div>
+            <div class="answer">In Python, there is only the concept of a function. A function with a
+                <code>return</code> statement returns a value, while a function without a <code>return</code> statement
+                implicitly returns <code>None</code>.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What does Python return if a function does not have a <code>return</code> statement?
+            </div>
+            <div class="answer">If a function does not have a <code>return</code> statement, Python returns a special
+                value called <code>None</code>, which is of type <code>NoneType</code>.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Is <code>None</code> a string in Python?</div>
+            <div class="answer">No, <code>None</code> is not a string. It is a special value of type
+                <code>NoneType</code> used to represent the absence of a value.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Why can’t we modify a variable in a function if that variable was not created within
+                the function?</div>
+            <div class="answer">Variables not created within a function are considered out of the function's local
+                scope. To modify such a variable, you would need to explicitly declare it as global or pass it as a
+                parameter to the function.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What happens if you try to call a function defined within another function, from the
+                main program?</div>
+            <div class="answer">You will get a NameError because the inner function is not visible or accessible outside
+                the scope of the function it is defined in.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What does function scope allow us to implement in programming?</div>
+            <div class="answer">Function scope allows us to implement the concept of function visibility, meaning
+                functions can be either public (accessible everywhere) or private (accessible only within a specific
+                scope).</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the scope of a variable in Python?</div>
+            <div class="answer">The scope of a variable in Python refers to the region of the code where the variable is
+                accessible. Variables defined inside a function are only accessible within that function.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Why might a function defined within another function be inaccessible from the main
+                program or other parts of the code?</div>
+            <div class="answer">A function defined inside another function has a limited scope, meaning it is only
+                accessible within the outer function where it is defined. Attempting to call it from outside this scope
+                will result in a NameError.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the purpose of using <code>time()</code> in the code?</div>
+            <div class="answer">The <code>time()</code> function is used to measure the execution time of the functions
+                <code>factorial</code> and <code>summation</code>. By taking timestamps before and after the function
+                calls, the code calculates how long each function takes to run.
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How can you format integers, floats, and strings using format specifiers?</div>
+            <div class="answer">You can format output using format specifiers: <code>%d</code> for integers,
+                <code>%.f</code> for floats, and <code>%s</code> for strings. For example, to print a float with 10
+                decimal places, use <code>%.10f</code>.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a class in object-oriented programming?</div>
+            <div class="answer">A class is a blueprint for creating objects, characterized by attributes and methods
+                that define the behavior of the objects.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a subclass in Python?</div>
+            <div class="answer">A subclass is a class that inherits from another class (the parent class). It can
+                override or extend the functionality of the parent class.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is polymorphism in Python?</div>
+            <div class="answer">Polymorphism allows methods in different classes to have the same name but behave
+                differently based on the object calling them. It provides flexibility in code design.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is encapsulation in Python?</div>
+            <div class="answer">Encapsulation is the concept of bundling data and methods within a class and restricting
+                access to some components using private and public attributes and methods.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is inheritance in Python?</div>
+            <div class="answer">Inheritance is a feature that allows a class (child class) to inherit attributes and
+                methods from another class (parent class), promoting code reuse.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What are getters and setters in Python?</div>
+            <div class="answer">Getters and setters are methods used to access and update the values of private
+                attributes in a class, promoting encapsulation.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is polymorphism in OOP?</div>
+            <div class="answer">Polymorphism allows a method in a child class to have the same name as a method in the
+                parent class but behave differently, depending on the class of the object that calls it.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is encapsulation?</div>
+            <div class="answer">Encapsulation is the principle of restricting access to certain details of an object and
+                exposing only necessary parts, often using getters and setters.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is inheritance in object-oriented programming?</div>
+            <div class="answer">Inheritance is a way to create a new class using details from an existing class,
+                inheriting attributes and methods.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What are methods in a class?</div>
+            <div class="answer">Methods are functions defined within a class that describe the behavior of an object.
+                For example, <code>Talk()</code>, <code>Sleep()</code>, or <code>Move()</code> in a <code>Human</code>
+                class.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a constructor in a class?</div>
+            <div class="answer">A constructor is a special method called <code>__init__</code> in Python that
+                initializes the attributes of an object when it is created.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the purpose of the <code>self</code> parameter?</div>
+            <div class="answer"><code>self</code> refers to the instance of the class and allows access to the object's
+                attributes and methods.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What are attributes in a class?</div>
+            <div class="answer">Attributes are variables that hold data specific to an object. They are defined within
+                the class, usually in the <code>__init__</code> constructor.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the <code>__init__</code> function?</div>
+            <div class="answer"><code>__init__</code> is a constructor method in Python classes that initializes the
+                object's attributes when an instance is created.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the <code>__str__</code> function?</div>
+            <div class="answer"><code>__str__</code> is a method that returns a human-readable string representation of
+                an object, used when <code>print()</code> or <code>str()</code> is called on an object.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What does <code>if __name__ == "__main__":</code> mean?</div>
+            <div class="answer">This line checks if the script is being run directly (not imported as a module) and
+                executes the code block if true. It's used to run code only when the file is executed as the main
+                program.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is an exception in Python?</div>
+            <div class="answer">An exception is an error that occurs during the execution of a program, disrupting its
+                normal flow. Exceptions can be handled using <code>try</code> and <code>except</code> blocks.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How does the code handle incorrect input or division errors?</div>
+            <div class="answer">The code uses a <code>try-except</code> block to catch errors. If an exception occurs
+                (like invalid input or division by zero), it prints "ERROR: Incorrect values."
+                <img src="C:\Users\sonia\OneDrive\Escritorio\try_except.jpg" alt="Try-Except Block"
+                    style="width: 100%; height: auto; margin-top: 10px;">
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What are the purposes of <code>else</code> and <code>finally</code> in exception
+                handling?</div>
+            <div class="answer">The <code>else</code> statement runs if no exceptions are thrown, similar to how it
+                works with <code>if</code> conditions. The <code>finally</code> statement executes code that must run
+                regardless of whether an exception occurred, such as closing files or cleaning up resources.
+                <img src="C:\Users\sonia\OneDrive\Escritorio\finally.jpg" alt="Else-Finally Block"
+                    style="width: 100%; height: auto; margin-top: 10px;">
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the purpose of the <code>finally</code> block in the exception handling flow,
+                and when is it executed according to the diagram?</div>
+            <div class="answer">The <code>finally</code> block is used to execute code that must run regardless of
+                whether an exception was raised or not. It is executed after the <code>try</code> block and any
+                <code>except</code> or <code>else</code> blocks, ensuring cleanup actions are always performed, such as
+                closing a file or releasing resources.
+                <img src="C:\Users\sonia\OneDrive\Escritorio\flowchart.jpg" alt="Else-Finally Block"
+                    style="width: 100%; height: auto; margin-top: 10px;">
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the purpose of the <code>assert</code> statement in Python?</div>
+            <div class="answer">
+                The <code>assert</code> statement is used for debugging purposes. It tests a condition, and if the
+                condition is false, it raises an <code>AssertionError</code> with an optional error message. Example:
+                <code>assert x > 0, "x must be greater than 0"</code>.
+                <br><br>
+                <img src="C:\Users\sonia\OneDrive\Escritorio\assert.jpg" alt="Assert statement"
+                    style="max-width: 100%; height: auto;">
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the difference between Traversal and Search in ordered data structures like
+                strings, tuples, and lists?</div>
+            <div class="answer">In ordered data structures, <strong>Traversal</strong> involves reading all elements in
+                the sequence without exception, ensuring every element is processed. In contrast,
+                <strong>Search</strong> allows stopping as soon as the desired element is found, without the need to
+                read all elements.
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How can you check for blank spaces in a string using a Search algorithm?</div>
+            <div class="answer">You can use a loop to search for blank spaces in a string. The loop continues until it
+                finds a blank space or reaches the end of the string.
+                <img src="C:\Users\sonia\OneDrive\Escritorio\search.jpg" alt="Search block"
+                    style="width: 100%; height: auto; margin-top: 10px;">
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How can you use traversal to count the number of vowels in a string?</div>
+            <div class="answer">You can use a <code>for</code> loop with <code>range(len(s))</code> to traverse each
+                character of the string using its index. Check each character to see if it is a vowel and increment a
+                counter accordingly.
+                <img src="C:\Users\sonia\OneDrive\Escritorio\1traversal.jpg" alt="Traversal block"
+                    style="width: 100%; height: auto; margin-top: 10px;">
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a more Pythonian way to traverse a string and count vowels?</div>
+            <div class="answer">A more Pythonian way is to use a <code>for</code> loop that iterates directly over the
+                characters of the string, without using an index. This simplifies the code and makes it more readable
+                while still counting each vowel efficiently.
+                <img src="C:\Users\sonia\OneDrive\Escritorio\2traversal.jpg" alt="Traversal pythonian block"
+                    style="width: 100%; height: auto; margin-top: 10px;">
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you create a list in Python?</div>
+            <div class="answer">You can create a list by placing comma-separated values between square brackets.
+                Example: <code>my_list = [1, 2, 3, 'hello']</code>.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you iterate over elements in a list?</div>
+            <div class="answer">You can use a <code>for</code> loop to iterate over each element in a list. Example:
+                <code>for item in my_list: print(item)</code>.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you access elements in a list?</div>
+            <div class="answer">You can access elements in a list using their index, which starts at 0. Example:
+                <code>my_list[0]</code> returns the first element.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you update an element in a list?</div>
+            <div class="answer">You can update an element in a list by assigning a new value to a specific index.
+                Example: <code>my_list[1] = 'new_value'</code>.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you add an element to a list?</div>
+            <div class="answer">You can add an element to the end of a list using the <code>append()</code> method.
+                Example: <code>my_list.append('new_element')</code>.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you insert an element at a specific position in a list?</div>
+            <div class="answer">You can use the <code>insert()</code> method to add an element at a specific index.
+                Example: <code>my_list.insert(2, 'new_element')</code>.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you remove an element from a list by value?</div>
+            <div class="answer">You can use the <code>remove()</code> method to delete an element by value. Example:
+                <code>my_list.remove('value_to_remove')</code>.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you remove an element from a list by index?</div>
+            <div class="answer">You can use the <code>pop()</code> method to remove an element by index and return it.
+                Example: <code>my_list.pop(1)</code> removes the element at index 1.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you clear all elements from a list?</div>
+            <div class="answer">You can use the <code>clear()</code> method to remove all elements from a list. Example:
+                <code>my_list.clear()</code>.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you get the length of a list?</div>
+            <div class="answer">You can use the <code>len()</code> function to get the number of elements in a list.
+                Example: <code>len(my_list)</code>.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you check if an element is in a list?</div>
+            <div class="answer">You can use the <code>in</code> keyword to check for an element's existence. Example:
+                <code>'item' in my_list</code> returns <code>True</code> if 'item' is in the list.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you concatenate two lists?</div>
+            <div class="answer">You can concatenate two lists using the <code>+</code> operator. Example:
+                <code>new_list = list1 + list2</code>.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you repeat elements in a list?</div>
+            <div class="answer">You can repeat elements in a list using the <code>*</code> operator. Example:
+                <code>repeated_list = my_list * 3</code> creates a list with elements repeated three times.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you slice a list?</div>
+            <div class="answer">You can slice a list to get a subset of elements using the syntax
+                <code>my_list[start:end]</code>. Example: <code>my_list[1:4]</code> returns elements at index 1, 2, and
+                3.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you add an element to a set?</div>
+            <div class="answer">You can use the <code>add()</code> method to add a single element to a set. Example:
+                <code>my_set.add(4)</code>.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you remove an element from a set?</div>
+            <div class="answer">You can use the <code>remove()</code> or <code>discard()</code> method to remove an
+                element. <code>remove()</code> raises an error if the element is not found, while <code>discard()</code>
+                does not.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the ASCII code and why is it important?</div>
+            <div class="answer">
+                The ASCII code is a Latin-based character encoding standard created in 1963 by the American Committee on Standards. It maps 256 integers (representable in a byte) to characters. For example:
+                <ul>
+                    <li>"a" has a code of 97 and "A" has a code of 65.</li>
+                    <li>The digit "0" has a code of 48, and digits continue up to "9" with 57.</li>
+                </ul>
+                ASCII organizes lowercase and uppercase letters sequentially:
+                <ul>
+                    <li>Lowercase: "a" = 97, "b" = 98, ... "z" = 122.</li>
+                    <li>Uppercase: "A" = 65, "B" = 66, ... "Z" = 90.</li>
+                </ul>
+                <p>On the keyboard, you can use ALT + Num to insert a character from the ASCII table (e.g., ALT + 169 = ©).</p>
+                <img src="C:\Users\sonia\OneDrive\Escritorio\asci.jpg" alt="ASCII Code" style="width:300px; height:auto;">                
+                <p>In Python:</p>
+                <ul>
+                    <li><code>print(chr(65))</code> → 'A'</li>
+                    <li><code>print(ord("A"))</code> → 65</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What are the main differences between <code>while</code> and <code>for</code> loops in Python?</div>
+            <div class="answer">
+                <ul>
+                    <li><strong>Condition Type:</strong> A <code>while</code> loop is based on a condition, while a <code>for</code> loop iterates over a sequence or range.</li>
+                    <li><strong>Number of Repetitions:</strong> A <code>while</code> loop depends on a condition and may repeat 0 or more times, while a <code>for</code> loop typically iterates a known number of times.</li>
+                    <li><strong>Counter:</strong> In a <code>while</code> loop, the counter must be explicitly initialized and updated. In a <code>for</code> loop, the counter is managed by the loop itself.</li>
+                    <li><strong>Equivalence:</strong> A <code>for</code> loop can always be rewritten as a <code>while</code> loop, but not all <code>while</code> loops can be rewritten as <code>for</code> loops.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How can you compute the sum of numbers from 1 to a given limit in Python using both a <code>for</code> loop and a <code>while</code> loop?</div>
+            <div class="answer">
+                <p>1. Using a <code>for</code> loop:</p>
+                <pre>
+sum_all = 0
+limit = int(input("Enter a number to 
+compute the sum: "))
+while (limit < 0):
+    print("Error: The number must be 
+    greater than zero")
+    limit = int(input("Enter a number 
+    to compute the sum: "))
+for number in range(limit + 1):
+    sum_all += number
+print(sum_all)
+                </pre>
+                <p>2. Using a <code>while</code> loop:</p>
+                <pre>
+number = 1
+sum_all = 0
+limit = int(input("Enter a number to 
+compute the sum: "))
+while (limit < 0):
+    print("Error: The number must be
+    greater than zero")
+    limit = int(input("Enter a number
+    to compute the sum: "))
+while (number <= limit):
+    sum_all += number
+    number += 1
+print("The summation of", limit, "is:", sum_all)
+                </pre>
+    <p>Both approaches will calculate the sum of all numbers from 1 to the specified limit, but they use different loop structures.</p>
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What are the flowcharts for <code>while</code> and <code>for</code> loops?</div>
+            <div class="answer"><p>Flowchart for While loop: </p>
+            <img src="C:\Users\sonia\OneDrive\Escritorio\flowchart_while.png" alt="While flowchart" style="width:200px; height:auto;">                
+            <p>Flowchart for For loop: </p>
+            <img src="C:\Users\sonia\OneDrive\Escritorio\flowchart_for.jpg" alt="For flowchart" style="width:200px; height:auto;">                
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What are some basic data structures in Python?</div>
+            <div class="answer">
+                <ul>
+                    <li><strong>String (str):</strong> A sequence of individual characters. You can use operators to index or extract substrings.</li>
+                    <li><strong>Tuple:</strong> An immutable collection of ordered elements, a generalization of a string.</
+                    </div>
+                </div>   
+        </div>     
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What happens in computer memory when an object is created?</div>
+            <div class="answer">An object is created, initialized, and stored in computer memory. It has an identifier (memory address), and a variable name serves as a pointer to this address.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is immutability in programming?</div>
+            <div class="answer">Immutability means that an object’s value cannot change after it is created. For example, if an integer with a value of 10 exists in memory, assigning another variable to this value doesn’t create a new object; it reuses the same memory address. A string is immutable.
+            <img src="C:\Users\sonia\OneDrive\Escritorio\string.jpg" alt="Immutability" style="width:200px; height:auto;">                
+        </div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Why might we need mutable objects?</div>
+            <div class="answer">Mutability allows us to change an object's value without creating a new object, conserving memory and making the code easier to manage. Mutable objects, like lists, allow modifications without losing their memory address.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a mutable object?</div>
+            <div class="answer">A mutable object can have its value changed after creation. Examples include lists and dictionaries. Unlike immutable objects, mutating a mutable object keeps its original memory address.
+            <img src="C:\Users\sonia\OneDrive\Escritorio\mutable.jpg" alt="Mutability" style="width:300px; height:auto;">                
+            </div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the difference between mutable and immutable objects in terms of memory?</div>
+            <div class="answer">Immutable objects retain their initial memory address without change, but any modification creates a new object. Mutable objects allow modifications within the same memory address, keeping the link to the original object.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you access a specific character in a string?</div>
+            <div class="answer">You use the operator <code>[]</code> with the character's index. The index starts from 0, so <code>string[i]</code> accesses the character at position i.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What does the <code>len()</code> function do when used with a string?</div>
+            <div class="answer">The <code>len()</code> function returns the length of the string, which is the total number of characters it contains.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What does the slicing operator <code>[start:stop:step]</code> do in strings?</div>
+            <div class="answer">The slicing operator returns a substring starting from the character at the 'start' index (included) to the 'stop' index (not included), taking characters at intervals of 'step'. The default step is 1.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a tuple in Python?</div>
+            <div class="answer">A tuple is an ordered sequence of elements, similar to a string but capable of containing elements of different types. Tuples are written as comma-separated values inside parentheses, and they are immutable.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you access elements in a tuple?</div>
+            <div class="answer">You use the operator <code>[]</code> with the index of the element. Indexing in tuples works the same way as in strings, starting from 0.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Can you change the values of a tuple after it's created?</div>
+            <div class="answer">No, tuples are immutable. Once created, you cannot change, add, or remove elements from a tuple.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How can you concatenate two or more tuples?</div>
+            <div class="answer">You can concatenate tuples using the <code>+</code> operator. For example, <code>tuple1 + tuple2</code> creates a new tuple with elements from both.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the utility of tuples in programming?</div>
+            <div class="answer">Tuples are useful for grouping related values, swapping the values of two variables, and returning multiple values from a function.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Can tuples be nested?</div>
+            <div class="answer">Yes, tuples can be nested. You can have tuples within tuples to create more complex data structures.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you define a list in Python?</div>
+            <div class="answer">A list is defined using square brackets, and its elements are separated by commas. Example: <code>my_list = [1, 2, 3, 4]</code>.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Can lists in Python contain elements of different data types?</div>
+            <div class="answer">Yes, lists in Python are heterogeneous, meaning they can contain elements of different data types.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you access an element in a list using an index?</div>
+            <div class="answer">You use the operator <code>[]</code> with the index of the element. Indexing starts from 0, so <code>my_list[0]</code> returns the first element.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you access the last item in a list using negative indexing?</div>
+            <div class="answer">You use the index <code>-1</code> to access the last item. For example, <code>my_list[-1]</code> gives the last element.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you change the value of an item in a list?</div>
+            <div class="answer">Lists are mutable, so you can change the value of an item using the index. Example: <code>my_list[2] = 10</code> changes the third item to 10.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What does the <code>len()</code> function return when used with a list?</div>
+            <div class="answer">The <code>len()</code> function returns the number of elements in the list.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How can you add an element to the end of a list?</div>
+            <div class="answer">You can use the <code>append()</code> method to add an element to the end of the list. Example: <code>my_list.append(5)</code>.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How can you concatenate two lists?</div>
+            <div class="answer">You can use the <code>+</code> operator to concatenate two lists, creating a new list. Example: <code>list1 + list2</code>.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you remove an item from a list by value?</div>
+            <div class="answer">You use the <code>remove()</code> method. It removes the first occurrence of the specified value. Example: <code>my_list.remove(3)</code>.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Why should you not modify a list while iterating over it?</div>
+            <div class="answer">Modifying a list while iterating can cause unexpected behavior because Python uses an internal counter to track elements. Removing elements can skip items or cause errors.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How can you create a copy of a list to avoid modifying the original list?</div>
+            <div class="answer">You can use slicing <code>[:]</code> or the <code>copy()</code> method to create a copy of the list. Example: <code>list_copy = my_list[:]</code> or <code>list_copy = my_list.copy()</code>.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the significance of using <code>[:]`</code> when copying lists?</div>
+            <div class="answer">Using <code>[:]</code> creates a shallow copy of the list, ensuring changes to the new list do not affect the original list.</div>
+        </div>
+                      
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How can you check if a number is prime?</div>
+            <div class="answer">
+                Here's a simple algorithm to check if a number <code>N</code> is prime:
+                <pre>
+        N = int(input("Enter a number: "))
+        prime = True
+        
+        if N < 2:
+            prime = False
+        else:
+            i = 2
+            while i * i <= N:
+                if N % i == 0:
+                    prime = False
+                    break
+                i += 1
+        
+        if prime:
+            print("Prime")
+        else:
+            print("NOT Prime")
+                </pre>
+                This code checks divisibility of <code>N</code> starting from 2 up to the square root of <code>N</code>.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How can you extract hashtags from a tweet?</div>
+            <div class="answer">
+                Use this code to extract hashtags from a string:
+                <pre>
+    s = input('Enter a string: ')
+    i = 0
+    
+    while i < len(s):
+        pos = i
+        if s[i] == '#':
+            while i < len(s) and s[i] != " ":
+                i += 1
+            print(s[pos:i])
+        i += 1
+                </pre>
+                This program iterates over the input string, detecting and printing each hashtag.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How does the Sieve of Eratosthenes algorithm work to find prime numbers?</div>
+            <div class="answer">
+                Here's a Python implementation of the Sieve of Eratosthenes:
+                <pre>
+max = int(input("Enter the upper limit: "))
+P = []
+NP = []
+
+for nb in range(2, max + 1):
+  if nb not in NP:
+    P.append(nb)
+    for multiple in range(nb * nb, max + 1, nb):
+      NP.append(multiple)
+print(P)
+                </pre>
+                This algorithm efficiently finds all prime numbers up to <code>maxi</code> by marking non-prime numbers.
+            </div>
+        </div>
+
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a ValueError in Python?</div>
+            <div class="answer">A ValueError occurs when a function receives an argument of the right data type but with
+                an inappropriate value. Example: trying to convert a non-numeric string to an integer, like
+                <code>int('abc')</code>.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is an IndexError in Python?</div>
+            <div class="answer">An IndexError occurs when you try to access an element from a list, tuple, or string
+                using an index that is out of range. Example: trying to access <code>my_list[5]</code> when
+                <code>my_list</code> only has 3 elements.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a TypeError in Python?</div>
+            <div class="answer">A TypeError occurs when an operation or function is applied to an object of an
+                inappropriate type. Example: trying to concatenate a string and an integer, like
+                <code>'hello' + 5</code>.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a KeyError in Python?</div>
+            <div class="answer">A KeyError occurs when you try to access a dictionary key that does not exist. Example:
+                accessing <code>my_dict['missing_key']</code> when 'missing_key' is not in <code>my_dict</code>.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is an AttributeError in Python?</div>
+            <div class="answer">An AttributeError occurs when you try to access or call an attribute or method that an
+                object does not have. Example: trying to use <code>my_string.append('a')</code> when strings do not have
+                an <code>append()</code> method.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a NameError in Python?</div>
+            <div class="answer">A NameError occurs when you try to use a variable or function name that has not been
+                defined. Example: using <code>print(x)</code> when <code>x</code> has not been declared.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a ZeroDivisionError in Python?</div>
+            <div class="answer">A ZeroDivisionError occurs when you attempt to divide a number by zero. Example:
+                <code>10 / 0</code> will raise a ZeroDivisionError.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a FileNotFoundError in Python?</div>
+            <div class="answer">A FileNotFoundError occurs when you try to open a file that does not exist. Example:
+                <code>open('non_existent_file.txt')</code> will raise this error if the file is not found.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is an ImportError in Python?</div>
+            <div class="answer">An ImportError occurs when an import statement fails to find the module or package you
+                are trying to import. Example: <code>import non_existent_module</code> will raise an ImportError if the
+                module is not available.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a SyntaxError in Python?</div>
+            <div class="answer">A SyntaxError occurs when the Python parser encounters a syntax error, meaning the code
+                structure is incorrect. Example: <code>print 'Hello'</code> without parentheses will raise a SyntaxError
+                in Python 3.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What does an <code>IOError</code> indicate in Python?</div>
+            <div class="answer">An <code>IOError</code> occurs when the input/output systems detect an error, such as trying to open a file that does not exist or issues with reading/writing to a file.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the purpose of the <code>assert</code> statement in Python?</div>
+            <div class="answer">The <code>assert</code> statement is used for debugging. It tests a condition and raises
+                an <code>AssertionError</code> if the condition is false. Example:
+                <code>assert x > 0, "x must be positive"</code>.
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Why is the <code>assert</code> statement useful in defensive programming?</div>
+            <div class="answer">
+                The <code>assert</code> statement is used in defensive programming to ensure that a program stops execution if a condition is not met. It is commonly used to check:
+                <ul>
+                    <li>Input parameters to functions to validate data.</li>
+                    <li>Outputs of a function to prevent the spread of incorrect values.</li>
+                </ul>
+                This helps make it easier to locate the source of an error.
+            </div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you open a file in Python?</div>
+            <div class="answer">You can open a file using the <code>open()</code> function. It requires the file name
+                and mode (optional). Example: <code>file = open('example.txt', 'r')</code> opens a file in read mode.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What does the <code>'r'</code> mode do in file handling?</div>
+            <div class="answer">The <code>'r'</code> mode opens a file for reading. If the file does not exist, it
+                raises a <code>FileNotFoundError</code>.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What does the <code>'w'</code> mode do in file handling?</div>
+            <div class="answer">The <code>'w'</code> mode opens a file for writing. If the file exists, it truncates
+                (overwrites) the file. If the file does not exist, it creates a new file.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What does the <code>'a'</code> mode do in file handling?</div>
+            <div class="answer">The <code>'a'</code> mode opens a file for appending. New data is written at the end of
+                the file. If the file does not exist, it creates a new file.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the benefit of using a <code>with</code> statement for file handling?</div>
+            <div class="answer">Using a <code>with</code> statement ensures that the file is properly closed after its
+                block of code is executed, even if an error occurs. Example:
+                <code>with open('file.txt', 'r') as file:</code>
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you write data to a file in Python?</div>
+            <div class="answer">You can write data to a file using the <code>write()</code> method. Example:
+                <code>file.write("Hello, World!")</code> writes "Hello, World!" to the file.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you read data from a file in Python?</div>
+            <div class="answer">You can read data from a file using the <code>read()</code>, <code>readline()</code>, or
+                <code>readlines()</code> method. Example: <code>content = file.read()</code> reads the entire file
+                content.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What does the <code>'b'</code> mode do when opening a file?</div>
+            <div class="answer">The <code>'b'</code> mode opens a file in binary mode, which is used for non-text files
+                like images or executable files. Example: <code>file = open('image.jpg', 'rb')</code>.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What happens if you try to open a file that does not exist using the <code>'w'</code>
+                mode?</div>
+            <div class="answer">If you open a file with the <code>'w'</code> mode and the file does not exist, Python
+                will create a new file.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What happens if you try to open a file that does not exist using the <code>'a'</code>
+                mode?</div>
+            <div class="answer">If you open a file with the <code>'a'</code> mode and the file does not exist, Python
+                will create a new file.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What does the <code>readline()</code> method do in file handling?</div>
+            <div class="answer">The <code>readline()</code> method reads one single line from a file, stopping when it encounters a newline character (<code>\n</code>). To avoid the newline character when processing a string, you can use <code>tline[:-1]</code> or specify <code>end=""</code> in the <code>print()</code> function.</div>
+        </div>        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do the <code>seek()</code> and <code>tell()</code> methods function in file handling?</div>
+            <div class="answer"><code>seek()</code> is used to move the file's pointer to a specified position, allowing you to read or write at a different part of the file. <code>tell()</code> is used to get the current position of the pointer, showing where the next read or write operation will occur.</div>
+        </div>
+        
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is an object in programming?</div>
+            <div class="answer">An object is an abstract data entity that represents an instance of a type. It contains
+                an internal representation (attributes) and provides an interface (methods) to interact with its data.
+                For example, <code>1234</code> is an instance of <code>int</code>, and <code>"Hello"</code> is an
+                instance of <code>str</code>. The interface defines the object's behavior while hiding the details of
+                its implementation.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What are the key components of an object?</div>
+            <div class="answer">An object has three key components: a type, an internal representation of data
+                (primitive or composite), and a set of procedures or methods to interact with the object.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you describe <code>1234</code> in terms of objects?</div>
+            <div class="answer"><code>1234</code> is an instance of the <code>int</code> type, meaning it is an object
+                representing an integer.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What type of object is <code>"hello"</code>?</div>
+            <div class="answer"><code>"hello"</code> is an instance of the <code>str</code> type, meaning it is a string
+                object.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What does it mean when we say an object has a "type"?</div>
+            <div class="answer">The "type" of an object defines the kind of data it holds and the operations that can be
+                performed on it. Examples include <code>int</code>, <code>str</code>, <code>list</code>, and
+                <code>dict</code>.
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How does the interface of a list in Python allow manipulation?</div>
+            <div class="answer">The interface of a list in Python provides various methods for manipulation, such as:
+                <ul>
+                    <li>Indexing and slicing: <code>L[i]</code>, <code>L[i:j]</code></li>
+                    <li>Concatenation: <code>+</code></li>
+                    <li>Functions: <code>len()</code>, <code>min()</code>, <code>max()</code>, <code>del(L[i])</code>
+                    </li>
+                    <li>Methods: <code>L.append()</code>, <code>L.extend()</code>, <code>L.count()</code>,
+                        <code>L.index()</code>, <code>L.insert()</code>, <code>L.pop()</code>, <code>L.remove()</code>,
+                        <code>L.reverse()</code>, <code>L.sort()</code>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the difference between a class and an instance of a class?</div>
+            <div class="answer">A class is a blueprint for creating new types, where you define the class name,
+                attributes, and methods. An instance of a class is a concrete object created from that blueprint. For
+                example, the class <code>List</code> defines the type, while <code>L = [1, 2]</code> is an instance of
+                that class. Methods can then be used on the instance, such as <code>L.append(3)</code> or
+                <code>len(L)</code>.
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What are attributes in a class?</div>
+            <div class="answer">Attributes in a class are data and functions that "belong" to the class. Data attributes
+                are objects that make up the class, such as coordinates made of numbers. Procedure attributes, or
+                methods, are functions that work specifically with that class, defining how to interact with the object.
+                For example, you can define a method to calculate the distance between two Coordinate objects, but
+                calculating the distance between two List objects would not make sense.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you create an object in a class?</div>
+            <div class="answer">To create an object in a class, you use a special method called the constructor, denoted
+                by <code>__init__</code>. The constructor initializes the data attributes of the object. For example, in
+                the class <code>Coordinate</code>:
+                <pre>
+        class Coordinate:
+            def __init__(self, x, y):
+                self.c_x = x
+                self.c_y = y
+                </pre>
+                Here, <code>self</code> refers to the instance of the class, and <code>c_x</code> and <code>c_y</code>
+                are data attributes initialized with the values <code>x</code> and <code>y</code> respectively. For
+                instance, <code>point = Coordinate(3, 4)</code> creates a point at (3, 4).
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you create and use an instance of a class in Python?</div>
+            <div class="answer">To create an instance of a class, you call the constructor method <code>__init__</code>
+                and assign the result to a variable. For example:
+                <pre>
+        class Coordinate:
+            def __init__(self, x, y):
+                self.c_x = x
+                self.c_y = y
+        
+        c = Coordinate(3, 4)
+        origin = Coordinate(0, 0)
+                </pre>
+                Here, <code>c</code> is an instance of the class <code>Coordinate</code> with values 3 and 4, and
+                <code>origin</code> is another instance with values 0 and 0. You can access attributes using the dot (.)
+                notation:
+                <pre>
+        print(c.c_x)  # Outputs: 3
+        print(origin.c_x)  # Outputs: 0
+                </pre>
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What are Methods in Python classes?</div>
+            <div class="answer">Methods are procedural attributes that define the behavior of a class. They are
+                functions that operate only on their class and always take the object itself as the first argument,
+                conventionally named <code>self</code>. The dot operator (.) is used to access both data attributes and
+                methods. Example:
+                <pre>
+    class Example:
+        def method(self):
+            print("This is a method")
+                
+    obj = Example()
+    obj.method()  
+    # Calls the method using the dot operator
+                </pre>
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you use a method in Python?</div>
+            <div class="answer">To use a method in Python, you call it on an object of the class. For example, in the
+                <code>Coordinate</code> class:
+                <pre>
+class Coordinate:
+    def __init__(self, x, y):
+        self.c_x = x
+        self.c_y = y
+    def distance(self, other):
+        x_diff_sq = (self.c_x - other.c_x)**2
+        y_diff_sq = (self.c_y - other.c_y)**2
+        return (x_diff_sq + y_diff_sq)**0.5
+        
+# Conventional use:
+c = Coordinate(3, 4)
+origin = Coordinate(0, 0)
+print(c.distance(origin))
+# Method called on object 'c'
+        
+# Equivalent use:
+print(Coordinate.distance(c, origin))  
+# Method called using class name
+                </pre>
+                In the conventional use, <code>self</code> is automatically passed.
+                In the equivalent use, you explicitly pass the object as the first argument.
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you convert an object to a string in Python for printing?</div>
+            <div class="answer">To convert an object to a string representation for printing, you define the special
+                <code>__str__</code> method in the class. Python calls this method whenever you use the
+                <code>print</code> function on an object. For example:
+                <pre>
+    class Coordinate:
+        def __init__(self, x, y):
+            self.c_x = x
+            self.c_y = y
+        def __str__(self):
+            return ("<" + str(self.c_x) + 
+            "," + str(self.c_y) + ">")    
+    c = Coordinate(3, 4)
+    print(c)  # Output: <3,4>
+                </pre>
+                <code>__str__</code> must return a string that represents the object, making it more meaningful when
+                printed.
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How can we define the behavior of adding two objects in a class?</div>
+            <div class="answer">To enable the use of the '+' symbol for adding objects of a class, you can define the
+                special method <code>__add__</code>. This method specifies how the '+' operation should work for
+                instances of the class. Similarly, you can use special methods to customize other operations:
+                <ul>
+                    <li><code>__sub__(self, other)</code> ➭ Defines behavior for subtraction (-)</li>
+                    <li><code>__eq__(self, other)</code> ➭ Defines behavior for equality (==)</li>
+                    <li><code>__lt__(self, other)</code> ➭ Defines behavior for less than (<)< /li>
+                    <li><code>__len__(self)</code> ➭ Defines behavior for the length function (len)</li>
+                </ul>
+                By implementing these methods, you make operations on class objects more intuitive. For example:
+                <pre>
+class Coordinate:
+    def __init__(self, x, y):
+        self.c_x = x
+        self.c_y = y
+    def __add__(self, other):
+        return Coordinate(self.c_x + other.c_x, 
+        self.c_y + other.c_y)
+c1 = Coordinate(3, 4)
+c2 = Coordinate(1, 2)
+c3 = c1 + c2  # Uses the __add__ method
+print(c3) # You must have __str__ defined 
+to print this meaningfully
+                </pre>
+                <img src="C:\Users\sonia\OneDrive\Escritorio\class.jpg" alt="Sum two objects of class"
+                    style="width: 100%; height: auto; margin-top: 10px;">
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the power of Object-Oriented Programming (OOP)?</div>
+            <div class="answer">
+                Object-Oriented Programming (OOP) allows grouping objects that share:
+                <ul>
+                    <li>Common attributes</li>
+                    <li>Procedures that operate with these attributes</li>
+                </ul>
+                OOP uses abstraction to differentiate between how to implement an object and how to use it. It also
+                allows the construction of layers of object abstractions that can inherit behaviors from other kinds of
+                objects. Additionally, OOP lets us create custom classes from Python's basic classes.
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you create and use a class to represent a number as a fraction in Python?</div>
+            <div class="answer">
+                To represent a number as a fraction, you can create a class called <code>Fraction</code> with the
+                following attributes and methods:
+                <ul>
+                    <li><strong>Attributes:</strong> <code>numerator</code> and <code>denominator</code> (internal
+                        representation)</li>
+                    <li><strong>Methods:</strong>
+                        <ul>
+                            <li><code>__add__</code> and <code>__sub__</code>: For adding and subtracting fractions</li>
+                            <li><code>__str__</code>: Converts the fraction to a string (e.g., "3/4")</li>
+                            <li><code>frac2float</code>: Converts the fraction to a float</li>
+                            <li><code>inv</code>: Returns the inverse of the fraction</li>
+                        </ul>
+                    </li>
+                </ul>
+                Example:
+                <pre>
+class Fraction:
+    def __init__(self, x, y):
+        self.num = x
+        self.den = y 
+    def __add__(self, other):
+        num = (self.num * other.den + 
+        other.num * self.den)
+        den = (self.den * other.den)
+        return Fraction(num, den)
+    def __sub__(self, other):
+        num = (self.num * other.den - 
+        other.num * self.den)
+        den = (self.den * other.den)
+        return Fraction(num, den) 
+    def __str__(self):
+        return str(self.num) + "/"
+        + str(self.den)  
+    def frac2float(self):
+        return self.num / self.den
+    def inv(self):
+        return Fraction(self.den, self.num)
+                </pre>
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What are Getter and Setter methods in object-oriented programming?</div>
+            <div class="answer">
+                Getter and Setter methods are used to access and update private data attributes of a class, maintaining
+                encapsulation.
+                <ul>
+                    <li><strong>Getter:</strong> A method that retrieves the value of a private attribute.</li>
+                    <li><strong>Setter:</strong> A method that sets or updates the value of a private attribute, often
+                        including validation.</li>
+                </ul>
+                These methods ensure controlled access and prevent direct manipulation of data, protecting the integrity
+                of the object's state.
+                <img src="C:\Users\sonia\OneDrive\Escritorio\get_set.jpg" alt="Getters & Setters"
+                    style="width: 100%; height: auto; margin-top: 10px;">
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a class hierarchy in object-oriented programming?</div>
+            <div class="answer">
+                A class hierarchy is an organizational structure where classes have a parent-child relationship:
+                <ul>
+                    <li><strong>Parent Class (Superclass):</strong> The class from which attributes and methods are
+                        inherited.</li>
+                    <li><strong>Child Class (Subclass):</strong> The class that inherits from the parent class.</li>
+                </ul>
+                Subclasses can:
+                <ul>
+                    <li>Add new attributes and methods.</li>
+                    <li>Redefine (override) methods inherited from the parent class.</li>
+                </ul>
+                Hierarchies allow for code reuse and the extension of class functionality.
+                <img src="C:\Users\sonia\OneDrive\Escritorio\hierarchy.jpg" alt="Hierarchy"
+                    style="width: 100%; height: auto; margin-top: 10px;">
+
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How do you create a subclass in Python?</div>
+            <div class="answer">
+                To create a subclass in Python:
+                <ol>
+                    <li>Use the parent class from which to inherit attributes and methods.</li>
+                    <li>Define the <code>__init__</code> method of the subclass, calling the parent's
+                        <code>__init__</code> to initialize inherited attributes and adding new ones.
+                    </li>
+                    <li>Add new attributes and methods specific to the subclass.</li>
+                    <li>Override existing methods to customize behavior (polymorphism).</li>
+                </ol>
+                <strong>Example:</strong>
+                <pre>
+class Developer(Employee):
+    def __init__(self, name, surname, 
+    prog_language):
+        Employee.__init__(self, name, surname)
+        self.prog_language = prog_language
+    def get_prog_language(self):
+        return self.prog_language
+    def set_prog_language(self, prog_language):
+        self.prog_language = prog_language
+    def __str__(self):
+        return "Dev: " + self.surname + 
+        "\\n Lang: " + self.prog_language
+                </pre>
+                Here, <code>Developer</code> inherits from <code>Employee</code> and adds new functionality.
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How can different types of bank accounts be modeled using classes in Python?</div>
+            <div class="answer">
+                To model different types of bank accounts, you can create a class hierarchy:
+                <ul>
+                    <li><strong>CurrentAccount</strong>: Basic account with no return.</li>
+                    <li><strong>RemuneratedAccount</strong>: Inherits from CurrentAccount, with a small monthly return
+                        using compound interest.</li>
+                    <li><strong>FixedAccount</strong>: Inherits from RemuneratedAccount, with a higher return but
+                        restrictions on withdrawals. Uses simple interest.</li>
+                </ul>
+                <strong>Example Code:</strong>
+                <pre>
+class CurrentAccount:
+  def __init__(self, name, capital=0):
+      self.name = name
+      self.capital = capital
+  def compute_return(self, months):
+      return 0
+
+class RemuneratedAccount(CurrentAccount):
+  def __init__(self, name, capital, interest):
+      super().__init__(name, capital)
+      self.interest = interest
+  def compute_return(self, months):
+      return self.capital * 
+    ((1 + (self.interest / 100))**months - 1)
+
+class FixedAccount(RemuneratedAccount):
+  def __init__(self, name, capital, 
+  interest, period):
+      super().__init__(name, capital, interest)
+      self.period = period
+  def compute_return(self, months):
+      return self.capital * 
+      (self.interest / 100) * months
+
+# Example instances
+cc = CurrentAccount("Javier Vilajosana", 3000)
+cr = RemuneratedAccount("Rodolfo Arias", 
+3000, 0.25)
+cf = FixedAccount("Guillem Redeu", 3000, 
+1.25, 48)
+
+# Calculate and print returns
+print("CurrentA:", cc.compute_return(12), "€")
+print("RemuneratedA:", 
+cr.compute_return(12), "€")
+print("FixedA:", cf.compute_return(12), "€")
+        </pre>
+                This example shows how to implement inheritance, methods, and custom behavior for different types of
+                accounts.
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Historical Figures -->
+    <div id="group2" class="container">
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Who is John Napier?</div>
+            <div class="answer">John Napier was a Scottish mathematician who invented logarithms and created Napier's
+                bones, a device for simplifying arithmetic calculations.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Who is William Oughtred?</div>
+            <div class="answer">William Oughtred was an English mathematician who invented the slide rule, an early
+                analog computer used for calculations.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Who is Wilhelm Schickard?</div>
+            <div class="answer">Wilhelm Schickard was a German polymath who built one of the first mechanical
+                calculators, known as the Calculating Clock, in the early 17th century.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Who is Blaise Pascal?</div>
+            <div class="answer">Blaise Pascal was a French mathematician, physicist, and inventor who developed the
+                Pascaline, one of the earliest mechanical calculators.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Who is Gottfried Wilhelm Leibniz?</div>
+            <div class="answer">Gottfried Wilhelm Leibniz was a German philosopher and mathematician who developed the
+                binary number system and built the Stepped Reckoner, a mechanical calculator.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Who is George Boole?</div>
+            <div class="answer">George Boole was a mathematician and logician who created Boolean algebra, the
+                foundation of digital logic used in computer circuits.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Who is Joseph Marie Jacquard?</div>
+            <div class="answer">Joseph Marie Jacquard was a French inventor who created the Jacquard loom, which used
+                punched cards to automate the weaving of intricate patterns, influencing early computing.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Who is Charles Babbage?</div>
+            <div class="answer">Charles Babbage was a mathematician and inventor who designed the Analytical Engine, a
+                mechanical general-purpose computer.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Who is Ada Byron / Ada Lovelace?</div>
+            <div class="answer">Ada Lovelace, born Ada Byron, was a mathematician known as the first computer
+                programmer. She wrote an algorithm for Charles Babbage's Analytical Engine and foresaw its potential
+                beyond calculation.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Who is Herman Hollerith?</div>
+            <div class="answer">Herman Hollerith was an inventor who developed a punched card system to process data for
+                the 1890 U.S. census. His company later became part of IBM.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is International Business Machines (IBM)?</div>
+            <div class="answer">International Business Machines (IBM) is a multinational technology company that played
+                a major role in developing computer hardware and software. It originated from Herman Hollerith's
+                Tabulating Machine Company.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Who is Konrad Zuse?</div>
+            <div class="answer">Konrad Zuse was a German engineer who built the Z3, the world's first programmable,
+                fully automatic digital computer, in 1941.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Who is Alan Turing?</div>
+            <div class="answer">Alan Turing was a British mathematician and computer scientist who developed the concept
+                of the Turing machine and helped break the Enigma code during World War II.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Who are John Mauchly and J. Presper Eckert?</div>
+            <div class="answer">John Mauchly and J. Presper Eckert were engineers who developed the ENIAC, one of the
+                first electronic general-purpose computers.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Who is Marcian Hoff?</div>
+            <div class="answer">Marcian "Ted" Hoff is an engineer credited with inventing the microprocessor while
+                working at Intel, revolutionizing computing.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Who are Steve Wozniak and Steve Jobs?</div>
+            <div class="answer">Steve Wozniak and Steve Jobs co-founded Apple Inc. Wozniak designed the Apple I and
+                Apple II computers, while Jobs played a key role in marketing and product vision.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is Intel?</div>
+            <div class="answer">Intel is a multinational corporation known for developing microprocessors, including the
+                first commercially available microprocessor, the Intel 4004.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is Moore's Law?</div>
+            <div class="answer">Moore's Law, named after Intel co-founder Gordon Moore, states that the number of
+                transistors on a microchip doubles approximately every two years, leading to exponential growth in
+                computing power.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">Who is John von Neumann?</div>
+            <div class="answer">John von Neumann was a mathematician who developed the architecture for the modern
+                computer, known as the von Neumann architecture, which outlines a system using a single storage
+                structure for both instructions and data.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What was the first "bug" in computing?</div>
+            <div class="answer">The term "bug" refers to an error in programming. The first documented bug was found in
+                1947 when engineers working on Mark II discovered that a moth had caused an electromagnetic relay to
+                fail, keeping it open.</div>
+        </div>
+
+    </div>
+
+    <!-- Hardware -->
+    <div id="group3" class="container">
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is hardware?</div>
+            <div class="answer">Hardware refers to the physical components of a computer system, such as the CPU, RAM,
+                hard drive, and motherboard.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is RAM?</div>
+            <div class="answer">RAM, or Random Access Memory, is a type of volatile memory used to store data and
+                instructions that are currently being used by the CPU. It is erased when the computer is turned off.
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is ROM?</div>
+            <div class="answer">ROM, or Read-Only Memory, is non-volatile memory used to store firmware or software that
+                is rarely changed. It retains data even when the computer is powered off.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a hard disk drive (HDD)?</div>
+            <div class="answer">A hard disk drive (HDD) is a storage device used to store and retrieve digital data
+                using magnetic storage. It is a non-volatile storage medium, meaning it retains data when powered off.
+            </div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a solid-state drive (SSD)?</div>
+            <div class="answer">A solid-state drive (SSD) is a type of non-volatile storage that uses flash memory to
+                store data. It is faster and more durable than a traditional hard disk drive (HDD).</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is an optical disk drive?</div>
+            <div class="answer">An optical disk drive is a hardware device that reads and writes data on optical discs,
+                such as CDs, DVDs, and Blu-ray discs, using laser technology.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a motherboard?</div>
+            <div class="answer">The motherboard is the main circuit board of a computer that connects all components,
+                including the CPU, RAM, storage, and peripheral devices, allowing them to communicate.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a power supply unit (PSU)?</div>
+            <div class="answer">A power supply unit (PSU) is a hardware component that converts electrical power from a
+                wall outlet into usable power for the internal components of a computer.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is an expansion card?</div>
+            <div class="answer">An expansion card is a circuit board that can be inserted into an expansion slot on a
+                motherboard to add new features or enhance a computer's capabilities, such as a graphics card or sound
+                card.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is computer science?</div>
+            <div class="answer">Computer science is the study of algorithms, computational processes, and the design of
+                computer systems, focusing on both software and hardware aspects.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is computer engineering?</div>
+            <div class="answer">Computer engineering is a discipline that combines electrical engineering and computer
+                science to develop computer hardware and software systems.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is data engineering?</div>
+            <div class="answer">Data engineering is the practice of designing and building systems that allow for the
+                collection, storage, and analysis of large volumes of data efficiently.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is artificial intelligence?</div>
+            <div class="answer">Artificial intelligence (AI) is the field of computer science that focuses on creating
+                machines capable of performing tasks that typically require human intelligence, such as speech
+                recognition, decision-making, and visual perception.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a computer?</div>
+            <div class="answer">A computer is an electronic device that processes data according to a set of
+                instructions. It performs computations, stores data, and provides output to the user.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is data?</div>
+            <div class="answer">Data refers to raw facts and figures that can be processed or analyzed to generate
+                meaningful information. It can come in various forms, such as text, numbers, or multimedia.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the basic structure of a computer?</div>
+            <div class="answer">The basic structure of a computer includes components like the monitor, motherboard,
+                CPU, RAM, expansion cards, power supply, optical disk drive, hard disk, keyboard, and mouse.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">How are computer components classified by location and function?</div>
+            <div class="answer">Components are classified by location as central (e.g., CPU, RAM) or peripheral (e.g.,
+                keyboard, printer) and by function as input, output, input-output, or storage devices.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the CPU?</div>
+            <div class="answer">The CPU, or Central Processing Unit, is the main component of a computer that performs
+                most of the processing inside a computer. It interprets and executes instructions from hardware and
+                software.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the Control Unit (CU)?</div>
+            <div class="answer">The Control Unit (CU) is a component of the CPU that directs the operation of the
+                processor. It tells the computer's memory, ALU, and input/output devices how to respond to the
+                instructions received.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the Arithmetic Logic Unit (ALU)?</div>
+            <div class="answer">The Arithmetic Logic Unit (ALU) is a part of the CPU that performs arithmetic operations
+                (such as addition and subtraction) and logical operations (such as comparisons).</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is secondary storage?</div>
+            <div class="answer">Secondary storage refers to non-volatile memory used to store data permanently, such as
+                hard drives, solid-state drives (SSDs), CDs, and USB drives.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What are input/output devices?</div>
+            <div class="answer">Input/output devices allow communication between the computer and the user. Input
+                devices include keyboards and mice, while output devices include monitors and printers. Some devices,
+                like touchscreens, serve both functions.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a program?</div>
+            <div class="answer">A program is a set of instructions that a computer follows to perform a specific task.
+                It is written in a programming language and executed by the CPU.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is programming?</div>
+            <div class="answer">Programming is the process of designing and writing code to create software applications
+                or systems. It involves using programming languages to solve problems or automate tasks.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a programming language?</div>
+            <div class="answer">A programming language is a formal language comprising a set of instructions used to
+                produce various kinds of output. Examples include Python, Java, C++, and JavaScript.</div>
+        </div>
+
+    </div>
+
+    <!-- Software -->
+    <div id="group4" class="container">
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is software?</div>
+            <div class="answer">Software refers to the set of instructions or programs that tell a computer how to
+                perform specific tasks. It is divided into system software, programming software, and application
+                software.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is system software?</div>
+            <div class="answer">System software is software designed to manage and control the hardware of a computer so
+                that application software can perform. It includes operating systems and utility software.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is application software?</div>
+            <div class="answer">Application software is software designed to help the user perform specific tasks, such
+                as word processing, web browsing, or gaming. Examples include Microsoft Word, Chrome, and Adobe
+                Photoshop.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is programming software?</div>
+            <div class="answer">Programming software includes tools used by developers to write, test, and debug code.
+                Examples are code editors, compilers, and debuggers.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is an operating system (OS)?</div>
+            <div class="answer">An operating system (OS) is software that manages computer hardware, software resources,
+                and provides services for computer programs. Examples include Windows, macOS, and Linux.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is firmware?</div>
+            <div class="answer">Firmware is software that is embedded into hardware devices to control their functions.
+                It is often stored in ROM and used in devices like modems, DVD drives, and microprocessors.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the difference between hardware and software?</div>
+            <div class="answer">Hardware is the physical part of a computer system, while software is the set of
+                instructions that tells the hardware what to do. Both are essential for a functioning computer system.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What are the layers of software in a computer system?</div>
+            <div class="answer">The layers of software in a computer system are arranged hierarchically: Application
+                software uses programming software, which in turn relies on the operating system, which manages the
+                hardware.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is Moore's Law?</div>
+            <div class="answer">Moore's Law, named after Intel co-founder Gordon Moore, states that the number of
+                transistors on a microchip doubles approximately every two years, leading to exponential growth in
+                computing power.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a virtual environment in Python?</div>
+            <div class="answer">A virtual environment is an isolated Python environment that allows you to manage
+                dependencies separately for different projects, preventing version conflicts.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is cloud computing?</div>
+            <div class="answer">Cloud computing is the delivery of computing services, including storage, processing,
+                and software, over the internet (the cloud) instead of using local servers.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a network?</div>
+            <div class="answer">A network is a group of interconnected devices that can communicate and share resources,
+                such as data or printers, with each other.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a database?</div>
+            <div class="answer">A database is an organized collection of data that can be easily accessed, managed, and
+                updated. Databases are used to store and retrieve information efficiently.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is machine learning?</div>
+            <div class="answer">Machine learning is a subset of artificial intelligence where systems learn from data,
+                identify patterns, and make decisions with minimal human intervention.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a compiler?</div>
+            <div class="answer">A compiler is a software program that translates code written in a high-level
+                programming language into machine code that a computer's processor can execute.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What are the key steps for error-free programming?</div>
+            <div class="answer">
+                <ul>
+                    <li><strong>Preventive:</strong> Write specs, use modular design, check inputs/outputs.</li>
+                    <li><strong>Testing:</strong> Compare results to expected values, create test cases.</li>
+                    <li><strong>Debugging:</strong> Analyze events causing errors.</li>
+                </ul>
+                <p>Design code to make errors easy to detect.</p>
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What are the two main types of errors in programming?</div>
+            <div class="answer"><strong>1. Syntactic Errors (compiling):</strong>
+                <ul>
+                    <li>Occur when the rules of the programming language are not followed.</li>
+                    <li>The compiler scans the code and provides warnings when it is incorrect.</li>
+                    <li>Sometimes the error messages are helpful, but poorly written code can make it hard to detect the
+                        exact issue.</li>
+                </ul>
+                <strong>2. Semantic Errors (execution):</strong>
+                <ul>
+                    <li>The code is syntactically correct but does not behave as intended.</li>
+                    <li>Debugging tools in Integrated Development Environments (IDEs) can be used to run the program
+                        step by step and find the source of the error.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is an algorithm?</div>
+            <div class="answer">An algorithm is a step-by-step procedure or set of rules used to solve a specific
+                problem or perform a computation. It is often used in programming and mathematics and is fundamental to
+                computer science.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What does "DRY" stand for in programming?</div>
+            <div class="answer">DRY stands for "Don't Repeat Yourself." It is a principle aimed at reducing the
+                repetition of code by using functions, classes, or loops to avoid redundancy.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the purpose of a firewall?</div>
+            <div class="answer">A firewall is a security system that monitors and controls incoming and outgoing network
+                traffic based on predetermined security rules, protecting against unauthorized access.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is cloud storage?</div>
+            <div class="answer">Cloud storage is a service that allows data to be stored and accessed over the internet
+                instead of on local hard drives or servers. It is scalable and often used for backups and data sharing.
+            </div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is software development?</div>
+            <div class="answer">Software development is the process of designing, coding, testing, and maintaining
+                software applications or systems. It involves various methodologies like Agile and Waterfall.</div>
+        </div>
+
+    </div>
+
+    <!-- Data Representation -->
+    <div id="group5" class="container">
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is binary code?</div>
+            <div class="answer">Binary code is the fundamental language of computers, using a combination of 0s and 1s
+                to represent data and instructions.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a bit?</div>
+            <div class="answer">A bit (binary digit) is the smallest unit of data in a computer, represented as either a
+                0 or 1.</div>
+        </div>
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is a byte?</div>
+            <div class="answer">A byte is a unit of digital information that consists of 8 bits and is commonly used to
+                represent a single character of text in a computer system.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What are storage measures?</div>
+            <div class="answer">Storage measures refer to units used to quantify the amount of data that can be stored,
+                such as bits, bytes, kilobytes (KB), megabytes (MB), and gigabytes (GB).</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the IEC standard?</div>
+            <div class="answer">The IEC standard defines binary prefixes for data storage measurements, such as KiB
+                (kibibyte), MiB (mebibyte), and GiB (gibibyte), where 1 KiB = 1024 bytes.</div>
+        </div>
+
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What are data speed measurements?</div>
+            <div class="answer">Data speed measurements refer to how quickly data can be transmitted or processed,
+                commonly measured in bits per second (bps), kilobits per second (Kbps), and megabits per second (Mbps).
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
