@@ -123,7 +123,7 @@
 <body>
     <div class="sidebar">
         <button onclick="showGroup('group1')">Programming Concepts (142)</button>
-        <button onclick="showGroup('group2')">Historical Figures (27)</button>
+        <button onclick="showGroup('group2')">Historical Figures (28)</button>
         <button onclick="showGroup('group3')">Hardware (25)</button>
         <button onclick="showGroup('group4')">Software (22)</button>
         <button onclick="showGroup('group5')">Data Representation (6)</button>
@@ -1393,6 +1393,10 @@ print("FixedA:", cf.compute_return(12), "€")
 
     <!-- Historical Figures -->
     <div id="group2" class="container">
+        <div class="flashcard" onclick="toggleAnswer(this)">
+            <div class="question">What is the Abacus (3,000 B.C.)?</div>
+            <div class="answer">The Abacus is an ancient tool used to perform fast and complex calculations, including multiplication, division, and square root. It is still used in China, especially in schools.</div>
+        </div>
         <div class="flashcard" onclick="toggleAnswer(this)">
             <div class="question">Who is John Napier?</div>
             <div class="answer">John Napier was a Scottish mathematician who invented logarithms and created Napier's
