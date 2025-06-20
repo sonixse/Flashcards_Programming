@@ -1,3 +1,3 @@
-## Programming Flashcards!
+## Programming Flashcards
 
-Definitions and core concepts for programming (Python). For you to ace it.
+All the key definitions and core concepts in Python programming — so you can ace it!
